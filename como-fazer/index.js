@@ -2,6 +2,7 @@ const express = require ('express');
 const app = express();
 const bodyParser = require('body-parser')
 const categorias = require('./routes/categorias')
+const publicacoes = require('./routes/publicacoes')
 
 
 app.use(bodyParser.urlencoded())
@@ -10,13 +11,11 @@ app.set('view engine', 'ejs')
 const port = process.env.PORT || 3000
 
 app.get('/', async(request, response) => {
-    const content = await axios.get('https://como-fazerdevpleno.firebaseio.com/teste.json');
-    
-    console.log(content.data)
-    response.render('index', {i: content.data})
+    response.render('index',)
 });
 
 app.use('/categorias', categorias)
+app.use('/publicacoes', publicacoes)
 
 //rodar servidor
 app.listen(port, (err) => {
