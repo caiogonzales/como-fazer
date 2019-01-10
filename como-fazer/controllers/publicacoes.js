@@ -6,7 +6,7 @@ const novaCategoria = async(req, res) => {
 const nova = async (req, res) => {
     await api.create('publicacoes/'+req.body.categoria,
         { titulo: req.body.titulo, conteudo: req.body.conteudo })
-    res.redirect('/publicacoes')
+    res.redirect('/publicacoes/categoria/'+req.body.categoria)
 }
 const list = async (req, res) => {
     const categoria = req.params.categoria
@@ -24,6 +24,14 @@ const select = async (req, res) => {
         categoria: req.params.categoria
     })
 }
+const conteudoPost = async(req, res) => {
+    const post = await api.get('publicacoes/'+req.params.categoria, req.params.id)
+    res.render('publicacoes/post', {
+        post,
+        titulo: req.body.titulo,
+        conteudo: req.body.conteudo
+    })
+}
 const update = async (req, res) => {
     await api.update('publicacoes/' + req.params.categoria, req.params.id, {
         titulo: req.body.titulo, conteudo: req.body.conteudo
@@ -31,5 +39,5 @@ const update = async (req, res) => {
     res.redirect('/publicacoes/categoria/'+req.params.categoria)
 }
 module.exports = {
-    novaCategoria, nova, list, deletaCategoria, select, update
+    novaCategoria, nova, list, deletaCategoria, select, update, conteudoPost
 }

@@ -13,6 +13,7 @@ const list = async (req, res) => {
 }
 const deletaCategoria = async (req, res) => {
     await api.apagar('categorias', req.params.id)
+    await api.apagar('publicacoes', req.params.id)
     res.redirect('/categorias')
 }
 const select = async (req, res) => {

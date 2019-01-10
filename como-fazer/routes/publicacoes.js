@@ -14,6 +14,8 @@ router.get('/categoria/:categoria', controller.list)
 router.get('/excluir/:categoria/:id', controller.deletaCategoria)
 //selecionar categoria individualmente
 router.get('/editar/:categoria/:id', controller.select)
+// conteudo do post
+router.get('/post/:categoria/:id', controller.conteudoPost)
 //update categoria
 router.post('/editar/:categoria/:id', controller.update)
 
